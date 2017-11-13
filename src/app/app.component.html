@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg bg-dark">
+
+        <h3 style="color: white; margin: 0px auto;">Registration Form</h3>  
+      
+      </nav>
+
+    <div *ngIf="!name; else forminfo">
+      <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+         <div class="form-container">
+            <div class="container">
+
+                <fieldset>
+                  <div class="form-group">
+                    <label for="name">Username</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter username" required="required" formControlName="name">
+                            </div> 
+
+                        <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">{{ alertName }}</div>
+                  
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required="required" formControlName="email">
+                  </div> 
+
+                       <div class="alert" *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">{{ alertEmail }}</div>  
+
+                  <div class="form-group">
+                    <label for="telno">Contact number</label>
+                    <input type="number" class="form-control" id="telno" placeholder="Contact number" required="required" formControlName="telno">
+                  </div>
+
+                         <div class="alert" *ngIf="!rForm.controls['telno'].valid && rForm.controls['telno'].touched">{{ alertTel }}</div>
+                  
+                  <button type="submit" class="btn btn-primary">Register</button>
+                </fieldset>
+
+            </div>
+         </div>
+      </form>
+    </div>
+
+    <ng-template #forminfo>
+       <div class="form-container">
+         <div class="rsow columns">
+            <p><strong>Username:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Contact Number:</strong> {{ telno }}</p>
+         </div>
+       </div>
+    </ng-template>
+</body>
+</html>
